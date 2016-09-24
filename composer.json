@@ -1,5 +1,5 @@
 {
-    "name": "cakephp/app",
+    "name": "lowg33kdev/cakephp-app",
     "description": "CakePHP skeleton app",
     "homepage": "http://cakephp.org",
     "type": "project",
@@ -14,11 +14,11 @@
     "require-dev": {
         "psy/psysh": "@stable",
         "cakephp/debug_kit": "~3.2",
-        "cakephp/bake": "~1.1"
+        "cakephp/bake": "~1.1",
+        "phpunit/phpunit": "^5.4"
     },
     "suggest": {
         "markstory/asset_compress": "An asset compression plugin which provides file concatenation and a flexible filter system for preprocessing and minification.",
-        "phpunit/phpunit": "Allows automated tests to be run without system-wide install.",
         "cakephp/cakephp-codesniffer": "Allows to check the code against the coding standards used in CakePHP."
     },
     "autoload": {
@@ -36,7 +36,5 @@
         "post-install-cmd": "App\\Console\\Installer::postInstall",
         "post-create-project-cmd": "App\\Console\\Installer::postInstall",
         "post-autoload-dump": "Cake\\Composer\\Installer\\PluginInstaller::postAutoloadDump"
-    },
-    "minimum-stability": "beta",
-    "prefer-stable": true
+    }
 }
