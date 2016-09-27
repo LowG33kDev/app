@@ -1,0 +1,35 @@
+{
+  "name": "cakephp-app",
+  "version": "1.0.0",
+  "description": "CakePHP skeleton app",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LowG33kDev/cakephp-app.git"
+  },
+  "keywords": [
+    "CakePHP",
+    "app"
+  ],
+  "author": "LowG33kDev",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/LowG33kDev/cakephp-app/issues"
+  },
+  "homepage": "https://github.com/LowG33kDev/cakephp-app#readme",
+  "devDependencies": {
+    "browser-sync": "^2.16.0",
+    "del": "^2.2.2",
+    "gulp": "^3.9.1",
+    "gulp-concat": "^2.6.0",
+    "gulp-connect-php": "0.0.8",
+    "gulp-plumber": "^1.1.0",
+    "gulp-sass": "^2.3.2",
+    "gulp-sourcemaps": "^1.6.0",
+    "gulp-uglify": "^2.0.0",
+    "gulp-util": "^3.0.7",
+    "minimist": "^1.2.0"
+  }
+}
