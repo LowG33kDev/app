@@ -21,6 +21,7 @@
   "homepage": "https://github.com/LowG33kDev/cakephp-app#readme",
   "devDependencies": {
     "browser-sync": "^2.16.0",
+    "browserify": "^13.1.0",
     "del": "^2.2.2",
     "gulp": "^3.9.1",
     "gulp-concat": "^2.6.0",
@@ -28,8 +29,13 @@
     "gulp-plumber": "^1.1.0",
     "gulp-sass": "^2.3.2",
     "gulp-sourcemaps": "^1.6.0",
+    "gulp-streamify": "^1.0.2",
     "gulp-uglify": "^2.0.0",
     "gulp-util": "^3.0.7",
-    "minimist": "^1.2.0"
+    "minimist": "^1.2.0",
+    "vinyl-source-stream": "^1.1.0"
+  },
+  "dependencies": {
+    "jquery": "^3.1.1"
   }
 }

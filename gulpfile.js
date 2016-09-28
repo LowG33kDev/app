@@ -6,6 +6,10 @@ var gulp        = require('gulp'),
     gutil       = require('gulp-util'),
     plumber     = require('gulp-plumber'),
     del         = require('del'),
+    browserify  = require('browserify'),
+    source      = require('vinyl-source-stream'),
+    uglify      = require('gulp-uglify'),
+    streamify   = require('gulp-streamify'),
     options     = require("minimist")(process.argv.slice(2));
 
 /**
@@ -16,21 +20,17 @@ var settings = {
     port: options.port || options.p || 8000,
     sync: (options.nosync === undefined) ? true : false,
     phpserver: (options.phpserver === undefined) ? false : true,
-    production: (options.production === undefined) ? true : false
+    production: (options.production === undefined) ? false : true,
+    bsport: options.bsport || 8080
 };
 
 var paths = {
     dist: './webroot',
-    scripts: './assets-src/js/**/*.js',
+    scripts: './assets-src/js/app.js',//**/*.js',
     sass: './assets-src/scss/**/*.+(scss|sass)',
     php: './src/**/*.+(php|ctp)'
 };
 
-
-gulp.task('scripts', function () {
-    return gulp.src(paths.scripts)
-        .pipe(gulp.dest(paths.dist + '/js/'));
-});
 
 gulp.task('serve', function () {
     if (settings.phpserver) {
@@ -59,7 +59,7 @@ gulp.task('browserSync', function() {
     return browserSync.init({
         proxy: "http://" + settings.host + ":" + settings.port,
         ui: {
-            port: 8080
+            port: settings.bsport
         }
     });
 });
@@ -73,6 +73,17 @@ gulp.task('sass', function() {
                 .pipe(gulp.dest(paths.dist + '/css/'));
 });
 
+gulp.task('scripts', function () {
+    return browserify(paths.scripts)
+        .bundle()
+        .pipe(source('bundle.js'))
+        .pipe(settings.production ? streamify(uglify()) : gutil.noop())
+        .pipe(gulp.dest(paths.dist + '/js/'));
+});
+
+/**
+ * Watch task
+ */
 gulp.task('watch', function() {
     gulp.watch(paths.php).on('change', (settings.sync) ? browserSync.reload : function(){});
     gulp.watch(paths.scripts, ['scripts']).on('change', (settings.sync) ? browserSync.reload : function(){});
@@ -80,14 +91,14 @@ gulp.task('watch', function() {
 });
 
 /**
- *
+ * Default task
  */
 gulp.task('default', ['build', 'serve', 'watch'], function() {
 
 });
 
 /**
- *
+ * Build task
  */
 gulp.task('build', ['scripts', 'sass'], function() {
 
